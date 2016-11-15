@@ -110,9 +110,9 @@ typedef void        (*t8_element_linear_id_t) (t8_element_t * elem,
                                                int level, uint64_t id);
 
 /** Calculate the linear id of an element */
-typedef             u_int64_t (*t8_element_get_linear_id_t) (const
-                                                             t8_element_t *
-                                                             elem, int level);
+typedef             uint64_t (*t8_element_get_linear_id_t) (const
+                                                            t8_element_t *
+                                                            elem, int level);
 
 /** Calculate the first descendant of a given element e. That is, the
  *  first element in a uniform refinement of e of the maximal possible level.

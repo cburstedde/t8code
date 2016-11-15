@@ -66,7 +66,7 @@ t8_default_hex_compare (const t8_element_t * elem1,
                         const t8_element_t * elem2)
 {
   int                 maxlvl;
-  u_int64_t           id1, id2;
+  uint64_t            id1, id2;
 
   /* Compute the bigger level of the two */
   maxlvl = SC_MAX (t8_default_hex_level (elem1),
