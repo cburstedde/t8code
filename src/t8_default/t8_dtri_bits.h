@@ -132,7 +132,7 @@ void                t8_dtri_nearest_common_ancestor (const t8_dtri_t * t1,
  *  \param [in]     t Input triangle.
  *  \return true    If \a t lies inside of the root triangle.
  */
-int                 t8_dtri_is_inside_root (t8_dtri_t * t);
+int                 t8_dtri_is_inside_root (const t8_dtri_t * t);
 
 /** Test if two triangles have the same coordinates, type and level.
  * \return true if \a t1 describes the same triangle as \a t2.

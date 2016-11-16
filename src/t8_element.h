@@ -149,6 +149,10 @@ typedef void        (*t8_element_anchor_t) (const t8_element_t * elem,
  */
 typedef int         (*t8_element_root_len_t) (const t8_element_t * elem);
 
+/** Query whether a given element is inside the root tree. */
+typedef int         (*t8_element_is_inside_root_t) (const t8_element_t *
+                                                    elem);
+
 /** Deallocate space for the codimension-one boundary elements. */
 typedef void        (*t8_element_destroy_t) (void *ts_context,
                                              int length,
@@ -186,6 +190,7 @@ struct t8_eclass_scheme
   t8_element_successor_t elem_successor; /**< Compute the successor of a given element */
   t8_element_anchor_t elem_anchor; /**< Compute the anchor node of a given element */
   t8_element_root_len_t elem_root_len; /**< Compute the root length of a given element */
+  t8_element_is_inside_root_t elem_inside_root; /**< Query whether a given element is inside the root tree */
   t8_element_first_descendant_t elem_first_desc; /**< Compute an element's first descendant */
   t8_element_last_descendant_t elem_last_desc; /**< Compute an element's last descendant */
   /* these element routines have a context for memory allocation */
@@ -501,6 +506,15 @@ void                t8_element_anchor (t8_eclass_scheme_t * ts,
  */
 int                 t8_element_root_len (t8_eclass_scheme_t * ts,
                                          const t8_element_t * elem);
+
+/** Query whether a given element is inside the root tree or not.
+ * \param [in] ts       The virtual table for this element class.
+ * \param [in] elem     The element to be checked.
+ * \return              True if \a elem is inside the root tree, false otherwise.
+ * TODO: Specify the root tree in more detail.
+ */
+int                 t8_element_is_inside_root (t8_eclass_scheme_t * ts,
+                                               const t8_element_t * elem);
 
 /** Allocate memory for an array of elements of a given class.
  * \param [in] ts       The virtual table for this element class.

@@ -585,7 +585,7 @@ t8_dtri_nearest_common_ancestor (const t8_dtri_t * t1,
 }
 
 int
-t8_dtri_is_inside_root (t8_dtri_t * t)
+t8_dtri_is_inside_root (const t8_dtri_t * t)
 {
   int                 is_inside;
   is_inside = (t->x >= 0 && t->x < T8_DTRI_ROOT_LEN) && (t->y >= 0) &&

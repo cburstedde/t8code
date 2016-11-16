@@ -272,6 +272,12 @@ t8_default_quad_root_len (const t8_element_t * elem)
   return P4EST_ROOT_LEN;
 }
 
+static int
+t8_default_quad_inside_root (const t8_element_t * elem)
+{
+  return p4est_quadrant_is_inside_root ((const p4est_quadrant_t *) elem);
+}
+
 t8_eclass_scheme_t *
 t8_default_scheme_new_quad (void)
 {
@@ -302,6 +308,7 @@ t8_default_scheme_new_quad (void)
   ts->elem_successor = t8_default_quad_successor;
   ts->elem_anchor = t8_default_quad_anchor;
   ts->elem_root_len = t8_default_quad_root_len;
+  ts->elem_inside_root = t8_default_quad_inside_root;
 
   ts->elem_new = t8_default_mempool_alloc;
   ts->elem_destroy = t8_default_mempool_free;

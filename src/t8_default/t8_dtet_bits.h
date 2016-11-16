@@ -135,7 +135,7 @@ void                t8_dtet_nearest_common_ancestor (const t8_dtet_t * t1,
  *  \param [in]     t Input tetrahedron.
  *  \return true    If \a t lies inside of the root tetrahedron.
  */
-int                 t8_dtet_is_inside_root (t8_dtet_t * t);
+int                 t8_dtet_is_inside_root (const t8_dtet_t * t);
 
 /** Test if two tetrahedra have the same coordinates, type and level.
  * \return true if \a t1 describes the same tetrahedron as \a t2.

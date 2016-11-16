@@ -198,6 +198,12 @@ t8_default_tet_root_len (const t8_element_t * elem)
   return T8_DTET_ROOT_LEN;
 }
 
+static int
+t8_default_tet_is_inside_root (const t8_element_t * elem)
+{
+  return t8_dtet_is_inside_root ((const t8_dtet_t *) elem);
+}
+
 t8_eclass_scheme_t *
 t8_default_scheme_new_tet (void)
 {
@@ -227,6 +233,7 @@ t8_default_scheme_new_tet (void)
   ts->elem_last_desc = t8_default_tet_last_descendant;
   ts->elem_anchor = t8_default_tet_anchor;
   ts->elem_root_len = t8_default_tet_root_len;
+  ts->elem_inside_root = t8_default_tet_is_inside_root;
 
   ts->elem_new = t8_default_mempool_alloc;
   ts->elem_destroy = t8_default_mempool_free;

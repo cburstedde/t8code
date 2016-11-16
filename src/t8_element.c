@@ -308,6 +308,14 @@ t8_element_root_len (t8_eclass_scheme_t * ts, const t8_element_t * elem)
   return ts->elem_root_len (elem);
 }
 
+int
+t8_element_is_inside_root (t8_eclass_scheme_t * ts, const t8_element_t * elem)
+{
+  T8_ASSERT (ts != NULL && ts->elem_inside_root != NULL);
+
+  return ts->elem_inside_root (elem);
+}
+
 void
 t8_element_new (t8_eclass_scheme_t * ts, int length, t8_element_t ** elems)
 {
