@@ -122,6 +122,14 @@ t8_default_tet_is_family (t8_element_t ** fam)
   return t8_dtet_is_familypv ((const t8_dtet_t **) fam);
 }
 
+static int
+t8_default_tet_face_neighbor (const t8_element_t * elem,
+                              t8_element_t * neighbor, int face)
+{
+  return t8_dtet_face_neighbour ((const t8_dtet_t *) elem, face,
+                                 (t8_dtet_t *) neighbor);
+}
+
 static void
 t8_default_tet_nca (const t8_element_t * elem1,
                     const t8_element_t * elem2, t8_element_t * nca)
@@ -210,6 +218,7 @@ t8_default_scheme_new_tet (void)
   ts->elem_children = t8_default_tet_children;
   ts->elem_child_id = t8_default_tet_child_id;
   ts->elem_is_family = t8_default_tet_is_family;
+  ts->elem_face_neighbor = t8_default_tet_face_neighbor;
   ts->elem_nca = t8_default_tet_nca;
   ts->elem_set_linear_id = t8_default_tet_set_linear_id;
   ts->elem_get_linear_id = t8_default_tet_get_linear_id;

@@ -122,6 +122,14 @@ t8_default_tri_is_family (t8_element_t ** fam)
   return t8_dtri_is_familypv ((const t8_dtri_t **) fam);
 }
 
+static int
+t8_default_tri_face_neighbor (const t8_element_t * elem,
+                              t8_element_t * neighbor, int face)
+{
+  return t8_dtri_face_neighbour ((const t8_dtri_t *) elem, face,
+                                 (t8_dtri_t *) neighbor);
+}
+
 static void
 t8_default_tri_nca (const t8_element_t * elem1,
                     const t8_element_t * elem2, t8_element_t * nca)
@@ -209,6 +217,7 @@ t8_default_scheme_new_tri (void)
   ts->elem_child = t8_default_tri_child;
   ts->elem_children = t8_default_tri_children;
   ts->elem_is_family = t8_default_tri_is_family;
+  ts->elem_face_neighbor = t8_default_tri_face_neighbor;
   ts->elem_child_id = t8_default_tri_child_id;
   ts->elem_nca = t8_default_tri_nca;
   ts->elem_set_linear_id = t8_default_tri_set_linear_id;

@@ -92,6 +92,10 @@ typedef void        (*t8_element_children_t) (const t8_element_t * elem,
 /** Return the child id of an element */
 typedef int         (*t8_element_child_id_t) (const t8_element_t * elem);
 
+typedef int         (*t8_element_face_neighbor_t) (const t8_element_t * elem,
+                                                   t8_element_t * neighbor,
+                                                   int face);
+
 /** Return nonzero if collection of elements is a family */
 typedef int         (*t8_element_is_family_t) (t8_element_t ** fam);
 
@@ -174,6 +178,7 @@ struct t8_eclass_scheme
   t8_element_children_t elem_children;  /**< Compute all children of an element. */
   t8_element_child_id_t elem_child_id;  /**< Return the child id of an element. */
   t8_element_is_family_t elem_is_family;/**< Return nonzero if the given collection of elements is a family */
+  t8_element_face_neighbor_t elem_face_neighbor; /**< Compute a face neighbor of an element. */
   t8_element_nca_t    elem_nca;         /**< Compute nearest common ancestor. */
   t8_element_boundary_t elem_boundary;  /**< Compute a set of boundary elements. */
   t8_element_linear_id_t elem_set_linear_id; /**< Initialize an element from a given linear id. */
@@ -386,6 +391,21 @@ int                 t8_element_child_id (t8_eclass_scheme_t * ts,
  */
 int                 t8_element_is_family (t8_eclass_scheme_t * ts,
                                           t8_element_t ** fam);
+
+/** Compute the face-neighbor of a given element along a face.
+ * \param [in] ts       The virtual table for this element class.
+ * \param [in] elem    The input elements.
+ * \param [in] neighbor On input an allocated element, on output the face
+ *                      neighbor of \a elem along the face with number \a face
+ *                      if this neighbor lies in the same tree as \a elem.
+ * \param [in] face    The number of the face along which the neighbor is computed.
+ * \return             The number of the face as seen from the newly computed neighbor.
+ * \note \a elem may point to the same element as \a neighbor.
+ */
+int                 t8_element_face_neighbor (t8_eclass_scheme_t * ts,
+                                              const t8_element_t * elem,
+                                              t8_element_t * neighbor,
+                                              int face);
 
 /* TODO: This could be problematic for pyramids, since elem1 and elem2
  *       could be of different classes. Would need two eclass_schemes as input */

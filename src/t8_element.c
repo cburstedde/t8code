@@ -221,6 +221,15 @@ t8_element_is_family (t8_eclass_scheme_t * ts, t8_element_t ** fam)
   return ts->elem_is_family (fam);
 }
 
+int
+t8_element_face_neighbor (t8_eclass_scheme_t * ts, const t8_element_t * elem,
+                          t8_element_t * neighbor, int face)
+{
+  T8_ASSERT (ts != NULL && ts->elem_face_neighbor != NULL);
+
+  return ts->elem_face_neighbor (elem, neighbor, face);
+}
+
 void
 t8_element_nca (t8_eclass_scheme_t * ts, const t8_element_t * elem1,
                 const t8_element_t * elem2, t8_element_t * nca)

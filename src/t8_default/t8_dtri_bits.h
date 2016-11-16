@@ -110,6 +110,7 @@ void                t8_dtri_sibling (const t8_dtri_t * elem,
  * \param [in]     t      Input triangle.
  * \param [in]     face   The face across which to generate the neighbor.
  * \param [in,out] n      Existing triangle whose data will be filled.
+ * \return                The number of the face as seen from the new neighbor.
  * \note \a t may point to the same triangle as \a n.
  */
 int                 t8_dtri_face_neighbour (const t8_dtri_t * t, int face,

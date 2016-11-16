@@ -175,6 +175,8 @@ t8_default_quad_is_family (t8_element_t ** fam)
   return p4est_quadrant_is_familypv ((p4est_quadrant_t **) fam);
 }
 
+/* TODO: implement quad and hex face neighbor */
+
 static void
 t8_default_quad_set_linear_id (t8_element_t * elem, int level, uint64_t id)
 {
