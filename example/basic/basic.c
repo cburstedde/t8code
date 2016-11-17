@@ -286,6 +286,32 @@ t8_basic ()
   t8_cmesh_destroy (&cmesh_partition);
 }
 
+/* Create a uniformly refined forest with a single coarse tree */
+static void
+t8_basic_uniform (t8_eclass_t eclass, int level, sc_MPI_Comm comm)
+{
+  t8_cmesh_t          cmesh;
+  t8_forest_t         forest;
+
+  t8_global_productionf ("Into t8_basic_uniform\n");
+  /* Create the coarse mesh structure */
+  cmesh = t8_cmesh_new_from_class (eclass, comm);
+
+  /* Create the forest */
+  t8_forest_init (&forest);
+  t8_forest_set_cmesh (forest, cmesh, comm);
+  t8_forest_set_scheme (forest, t8_scheme_new_default ());
+  t8_forest_set_level (forest, level);
+  t8_forest_commit (forest);
+  /* vtk output */
+  t8_forest_write_vtk (forest, "basic_uniform");
+  /* clean-up */
+  t8_forest_unref (&forest);
+  t8_cmesh_unref (&cmesh);
+
+  t8_global_productionf ("Done t8_basic_uniform\n");
+}
+
 #endif
 #if 0
 static void
@@ -350,6 +376,7 @@ main (int argc, char **argv)
   t8_basic_partitioned ();
 #endif
 
+  t8_basic_uniform (T8_ECLASS_TRIANGLE, 2, sc_MPI_COMM_WORLD);
 #if 0
   t8_basic (0, level);
   t8_basic (1, level);
