@@ -588,6 +588,7 @@ int
 t8_dtri_is_inside_root (const t8_dtri_t * t)
 {
   int                 is_inside;
+
   is_inside = (t->x >= 0 && t->x < T8_DTRI_ROOT_LEN) && (t->y >= 0) &&
 #ifdef T8_DTRI_TO_DTET
     (t->z >= 0) &&
@@ -595,10 +596,11 @@ t8_dtri_is_inside_root (const t8_dtri_t * t)
 #ifndef T8_DTRI_TO_DTET
     (t->y - t->x <= 0) && (t->y == t->x ? t->type == 0 : 1) &&
 #else
-    (t->z - t->x <= 0) &&
-    (t->y - t->z <= 0) &&
-    (t->z == t->x ? (3 <= t->type && 5 <= t->type) : 1) &&
-    (t->y == t->x ? (1 <= t->type && 3 <= t->type) : 1) &&
+    (t->z - t->x <= 0) && (t->y - t->z <= 0) &&
+    /* If y and z are equal, the types 0, 4 and 5 are allowed */
+    (t->y == t->z ? (t->type == 0 || 4 <= t->type) : 1) &&
+    /* If x and z are equal, the types 0, 1 and 2 are allowed */
+    (t->x == t->z ? t->type <= 2 : 1) &&
 #endif
     1;
   return is_inside;
