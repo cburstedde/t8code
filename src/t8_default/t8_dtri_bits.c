@@ -692,6 +692,7 @@ t8_dtri_is_ancestor (const t8_dtri_t * t, const t8_dtri_t * c)
     return t8_dtri_is_equal (t, c);
   }
 
+  /* Check whether t and c have the same cube as ancestor */
   exclorx = (t->x ^ c->x) >> (T8_DTRI_MAXLEVEL - t->level);
   exclory = (t->y ^ c->y) >> (T8_DTRI_MAXLEVEL - t->level);
 #ifdef T8_DTRI_TO_DTET
@@ -716,10 +717,19 @@ t8_dtri_is_ancestor (const t8_dtri_t * t, const t8_dtri_t * c)
 #else
     /* 3D */
       /* *INDENT-OFF* */
+    /* In dependence of the type of t, we determine a permutation n1, n2, dir3
+     * of c's x, y and z coordinate (shifted by t's anchor node).
+     * The permutation is given by this table:
+     * type_t |  0  1  2  3  4  5
+     * --------------------------
+     *     n1 |  x  x  y  y  z  z
+     *     n2 |  y  z  z  x  x  y
+     *   dir3 |  z  y  x  z  y  x
+     */
       n1 = type_t / 2 == 0 ? c->x - t->x :
            type_t / 2 == 2 ? c->z - t->z : c->y - t->y;
-      n2 = (type_t + 3) % 6 == 0 ? c->x - t->x :
-           (type_t + 3) % 6 == 2 ? c->z - t->z : c->y - t->y;
+      n2 = ((type_t + 3) % 6) / 2 == 0 ? c->x - t->x :
+           ((type_t + 3) % 6) / 2 == 2 ? c->z - t->z : c->y - t->y;
       dir3 = type_t % 3 == 2 ? c->x - t->x :
              type_t % 3 == 0 ? c->z - t->z : c->y - t->y;
       sign = (type_t % 2 == 0) ? 1 : -1;
@@ -728,14 +738,14 @@ t8_dtri_is_ancestor (const t8_dtri_t * t, const t8_dtri_t * c)
     type_t += 6;                /* We need to compute modulo six and want
                                    to avoid negative numbers when substracting from type_t. */
     return !(n1 >= T8_DTRI_LEN (t->level) || n2 < 0 || dir3 - n1 > 0
-             || n2 - dir3 > 0 || (dir3 == n1
+             || n2 - dir3 > 0 || (dir3 == n2
                                   && (c->type == (type_t + sign * 1) % 6
-                                      || t->type == (type_t + sign * 2) % 6
-                                      || t->type == (type_t + sign * 3) % 6))
-             || (dir3 == n2
+                                      || c->type == (type_t + sign * 2) % 6
+                                      || c->type == (type_t + sign * 3) % 6))
+             || (dir3 == n1
                  && (c->type == (type_t - sign * 1) % 6
-                     || t->type == (type_t - sign * 2) % 6
-                     || t->type == (type_t - sign * 3) % 6)));
+                     || c->type == (type_t - sign * 2) % 6
+                     || c->type == (type_t - sign * 3) % 6)));
 #endif
   }
   else {
