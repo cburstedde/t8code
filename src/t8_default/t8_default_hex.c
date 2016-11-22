@@ -127,6 +127,24 @@ t8_default_hex_is_family (t8_element_t ** fam)
   return p8est_quadrant_is_familypv ((p8est_quadrant_t **) fam);
 }
 
+static int
+t8_default_hex_face_neighbor (const t8_element_t * elem,
+                              t8_element_t * neighbor, int face)
+{
+  const p8est_quadrant_t *q;
+  p8est_quadrant_t   *n;
+  T8_ASSERT (elem != NULL && neighbor != NULL);
+  T8_ASSERT (0 <= face && face < P8EST_FACES);
+
+  q = (const p8est_quadrant_t *) elem;
+  n = (p8est_quadrant_t *) neighbor;
+  p8est_quadrant_face_neighbor (q, face, n);
+  /* We return the number of the opposite face.
+   * Opposite faces are 0 and 1, 2 and 3 as well as 4 and 5
+   */
+  return face ^ 1;
+}
+
 static void
 t8_default_hex_set_linear_id (t8_element_t * elem, int level, uint64_t id)
 {
@@ -217,6 +235,7 @@ t8_default_scheme_new_hex (void)
   ts->elem_children = t8_default_hex_children;
   ts->elem_child_id = t8_default_hex_child_id;
   ts->elem_is_family = t8_default_hex_is_family;
+  ts->elem_face_neighbor = t8_default_hex_face_neighbor;
   ts->elem_nca = (t8_element_nca_t) p8est_nearest_common_ancestor;
   ts->elem_boundary = NULL;
   ts->elem_set_linear_id = t8_default_hex_set_linear_id;

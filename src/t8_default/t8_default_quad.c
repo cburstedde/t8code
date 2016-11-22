@@ -175,7 +175,23 @@ t8_default_quad_is_family (t8_element_t ** fam)
   return p4est_quadrant_is_familypv ((p4est_quadrant_t **) fam);
 }
 
-/* TODO: implement quad and hex face neighbor */
+static int
+t8_default_quad_face_neighbor (const t8_element_t * elem,
+                               t8_element_t * neighbor, int face)
+{
+  const p4est_quadrant_t *q;
+  p4est_quadrant_t   *n;
+  T8_ASSERT (elem != NULL && neighbor != NULL);
+  T8_ASSERT (0 <= face && face < P4EST_FACES);
+
+  q = (const p4est_quadrant_t *) elem;
+  n = (p4est_quadrant_t *) neighbor;
+  p4est_quadrant_face_neighbor (q, face, n);
+  /* We return the number of the opposite face.
+   * Opposite faces are 0 and 1 as well as 2 and 3.
+   */
+  return face ^ 1;
+}
 
 static void
 t8_default_quad_set_linear_id (t8_element_t * elem, int level, uint64_t id)
@@ -299,6 +315,7 @@ t8_default_scheme_new_quad (void)
   ts->elem_children = t8_default_quad_children;
   ts->elem_child_id = t8_default_quad_child_id;
   ts->elem_is_family = t8_default_quad_is_family;
+  ts->elem_face_neighbor = t8_default_quad_face_neighbor;
   ts->elem_nca = t8_default_quad_nca;
   ts->elem_boundary = t8_default_quad_boundary;
   ts->elem_set_linear_id = t8_default_quad_set_linear_id;
