@@ -51,4 +51,5 @@ fi
 echo "--- This is the bootstrap script for t8code ---"
 echo "Current directory is $PWD"
 
+rm -rf autom4te.cache
 autoreconf -i -I "$SC_CONFIG" -I "$P4EST_CONFIG"
