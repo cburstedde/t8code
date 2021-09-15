@@ -14,6 +14,7 @@ AC_PREFIX_DEFAULT([$PWD/local])
 AX_PREFIX_CONFIG_H([src/t8_config.h])
 AM_INIT_AUTOMAKE([parallel-tests subdir-objects])
 AM_SILENT_RULES
+PKG_INSTALLDIR
 SC_VERSION([T8])
 
 echo "o---------------------------------------"
@@ -32,8 +33,8 @@ SC_MPI_CONFIG([T8], [], [yes])
 SC_MPI_ENGAGE([T8])
 # This is needed for compatibility with automake >= 1.12
 m4_ifdef([AM_PROG_AR],[AM_PROG_AR])
-SC_PROG_LINT
-SC_C_VERSION
+dnl SC_PROG_LINT
+dnl SC_C_VERSION
 LT_INIT
 
 echo "o---------------------------------------"

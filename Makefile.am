@@ -3,7 +3,7 @@
 # Makefile.am in toplevel directory
 
 # include makefiles from installed subpackages
-ACLOCAL_AMFLAGS = -I config @T8_SC_AMFLAGS@ @T8_P4EST_AMFLAGS@
+ACLOCAL_AMFLAGS = -I config
 if T8_SC_MK_USE
 @T8_SC_MK_INCLUDE@
 endif
@@ -29,6 +29,9 @@ noinst_HEADERS =
 noinst_PROGRAMS =
 sysconf_DATA =
 dist_t8data_DATA =
+
+# pkg-config configuration file
+pkgconfig_DATA =
 
 # use this if you want to link in T8 without autotools
 sysconf_DATA += Makefile.t8.mk
