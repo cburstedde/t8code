@@ -62,7 +62,7 @@ SUBDIRS = @T8_SC_SUBDIR@ @T8_P4EST_SUBDIR@
 DIST_SUBDIRS = $(SUBDIRS)
 
 # handle toplevel directory
-EXTRA_DIST += \
+EXTRA_DIST += README.md \
   bootstrap build-aux/git-version-gen build-aux/git2cl scripts doc
 DISTCLEANFILES += \
         _configs.sed src/t8_config.h @T8_DISTCLEAN@
