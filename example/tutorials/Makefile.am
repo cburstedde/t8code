@@ -18,14 +18,15 @@ example_tutorials_t8_step2_uniform_forest_SOURCES = \
 	example/tutorials/t8_step2_uniform_forest.cxx
 example_tutorials_t8_step3_adapt_forest_SOURCES = \
 	example/tutorials/t8_step3_adapt_forest.cxx \
-	example/tutorials/t8_step3_main.cxx
+	example/tutorials/t8_step3_main.cxx \
+	example/tutorials/t8_step3.h
 example_tutorials_t8_step4_partition_balance_ghost_SOURCES = \
 	example/tutorials/t8_step3_adapt_forest.cxx \
 	example/tutorials/t8_step4_partition_balance_ghost.cxx \
-	example/tutorials/t8_step4_main.cxx
+	example/tutorials/t8_step4_main.cxx \
+	example/tutorials/t8_step4.h
 example_tutorials_t8_step5_element_data_SOURCES = \
 	example/tutorials/t8_step3_adapt_forest.cxx \
 	example/tutorials/t8_step5_element_data.cxx \
-	example/tutorials/t8_step5_main.cxx
-
-
+	example/tutorials/t8_step5_main.cxx \
+	example/tutorials/t8_step5.h
