@@ -34,8 +34,6 @@
 #include <t8_eclass.h>
 #include <t8_element.h>
 
-T8_EXTERN_C_BEGIN ();
-
 /* TODO: Implement a set of rules that have to hold between different eclass,
  *       i.e. lines must have a greater or equal maxlevel than quads and triangles.
  *       Check whether this rules are fulfilled in the construction of a scheme.
@@ -753,7 +751,5 @@ void                t8_eclass_boundary_destroy (t8_scheme_t * scheme,
                                                 int min_dim, int length,
                                                 t8_element_t ** boundary);
 #endif /* if 0 */
-
-T8_EXTERN_C_END ();
 
 #endif /* !T8_ELEMENT_CXX_HXX */

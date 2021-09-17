@@ -23,9 +23,6 @@
 #include <sc_functions.h>
 #include "t8_default_common_cxx.hxx"
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 /** This class independent function assumes an sc_mempool_t as context.
  * It is suitable as the elem_new callback in \ref t8_eclass_scheme_t.
  * We assume that the mempool has been created with the correct element size.
@@ -172,5 +169,3 @@ t8_default_scheme_common_c::t8_element_general_function (const t8_element_t *
 {
   /* This function is intentionally left blank. */
 }
-
-T8_EXTERN_C_END ();

@@ -28,9 +28,6 @@
 #include <t8_forest.h>
 #include <t8_element_cxx.hxx>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 /* This is the adapt function called during one round of balance.
  * We refine an element if it has any face neighbor with a level larger
  * than the element's level + 1.
@@ -391,5 +388,3 @@ t8_forest_is_balanced (t8_forest_t forest)
   forest->t8code_data = data_temp;
   return 1;
 }
-
-T8_EXTERN_C_END ();

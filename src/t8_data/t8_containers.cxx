@@ -28,8 +28,6 @@
 #include <sc_containers.h>
 #include <t8_data/t8_containers.h>
 
-T8_EXTERN_C_BEGIN ();
-
 #ifdef T8_ENABLE_DEBUG
 /* Query whether an element array is initialized properly. */
 static int
@@ -304,5 +302,3 @@ t8_element_array_truncate (t8_element_array_t * element_array)
   T8_ASSERT (t8_element_array_is_valid (element_array));
   sc_array_truncate (&element_array->array);
 }
-
-T8_EXTERN_C_END ();

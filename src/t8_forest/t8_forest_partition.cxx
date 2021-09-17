@@ -27,9 +27,6 @@
 #include <t8_cmesh/t8_cmesh_offset.h>
 #include <t8_element_cxx.hxx>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 /* For each tree that we send elements from to
  * other processes, we send this information to the
  * other process */
@@ -1292,5 +1289,3 @@ t8_forest_partition_data (t8_forest_t forest_from, t8_forest_t forest_to,
   t8_log_indent_pop ();
   t8_global_productionf ("Done forest partition data.\n");
 }
-
-T8_EXTERN_C_END ();

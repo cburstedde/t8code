@@ -26,9 +26,6 @@
 #include <t8_data/t8_containers.h>
 #include <t8_element_cxx.hxx>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 /* Check the lastly inserted elements of an array for recursive coarsening.
  * The last inserted element must be the last element of a family.
  * \param [in] forest  The new forest currently in construction.
@@ -418,5 +415,3 @@ t8_forest_adapt (t8_forest_t forest)
                            forest->profile->adapt_runtime);
   }
 }
-
-T8_EXTERN_C_END ();

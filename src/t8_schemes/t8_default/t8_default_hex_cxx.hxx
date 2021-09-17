@@ -51,6 +51,7 @@ public:
   /** Constructor. */
   t8_default_scheme_hex_c ();
 
+  /** Destructor. */
   ~t8_default_scheme_hex_c ();
 
   /** Allocate memory for a given number of elements.

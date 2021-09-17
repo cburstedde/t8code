@@ -37,6 +37,8 @@
 
 #include <t8_element.h>
 
+T8_EXTERN_C_BEGIN ();
+
 typedef struct t8_mesh t8_mesh_t;
 
 /************************* preallocate **************************/
@@ -135,5 +137,7 @@ void                t8_mesh_get_element_support (t8_mesh_t * mesh,
 /***************************** destruct *************************/
 
 void                t8_mesh_destroy (t8_mesh_t * mesh);
+
+T8_EXTERN_C_END ();
 
 #endif /* !T8_MESH_H */

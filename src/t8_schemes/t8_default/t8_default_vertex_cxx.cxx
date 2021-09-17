@@ -24,9 +24,6 @@
 #include "t8_default_vertex_cxx.hxx"
 #include "t8_dvertex_bits.h"
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 int
 t8_default_scheme_vertex_c::t8_element_maxlevel (void)
 {
@@ -354,5 +351,3 @@ t8_default_scheme_vertex_c::~t8_default_scheme_vertex_c ()
    * However we need to provide an implementation of the destructor
    * and hence this empty function. */
 }
-
-T8_EXTERN_C_END ();

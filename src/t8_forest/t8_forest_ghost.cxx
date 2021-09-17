@@ -30,9 +30,6 @@
 #include <t8_element_cxx.hxx>
 #include <t8_data/t8_containers.h>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 /* The information for a remote process, what data
  * we have to send to them.
  */
@@ -2472,5 +2469,3 @@ t8_forest_ghost_destroy (t8_forest_ghost_t * pghost)
   t8_forest_ghost_unref (pghost);
   T8_ASSERT (*pghost == NULL);
 }
-
-T8_EXTERN_C_END ();

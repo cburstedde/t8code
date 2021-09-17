@@ -31,6 +31,8 @@
  * TODO: document this.
  */
 
+T8_EXTERN_C_BEGIN ();
+
 /** The number of children that a tetrahedron is refined into. */
 #define T8_DTET_CHILDREN 8
 
@@ -84,5 +86,7 @@ typedef struct t8_dtet
   t8_dtet_coord_t     z;        /**< The z integer coordinate of the anchor node. */
 }
 t8_dtet_t;
+
+T8_EXTERN_C_END ();
 
 #endif /* T8_DTET_H */

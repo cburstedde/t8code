@@ -25,9 +25,6 @@
 #include <t8_forest.h>
 #include <t8_element_cxx.hxx>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 typedef struct
 {
   t8_eclass_scheme_c *ts;
@@ -467,5 +464,3 @@ t8_forest_iterate_replace (t8_forest_t forest_new,
   }                             /* tree loop */
   t8_global_productionf ("Done t8_forest_iterate_replace\n");
 }
-
-T8_EXTERN_C_END ();

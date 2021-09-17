@@ -32,9 +32,6 @@
 #include "t8_default_tet_cxx.hxx"
 #include "t8_default_prism_cxx.hxx"
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 t8_scheme_cxx_t    *
 t8_scheme_new_default_cxx (void)
 {
@@ -79,5 +76,3 @@ t8_eclass_scheme_is_default (t8_eclass_scheme_c * ts)
   }
   return 0;                     /* Default return value false */
 }
-
-T8_EXTERN_C_END ();

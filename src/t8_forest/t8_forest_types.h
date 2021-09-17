@@ -35,6 +35,8 @@
 #include <t8_forest/t8_forest_adapt.h>
 #include <t8_forest.h>
 
+T8_EXTERN_C_BEGIN ();
+
 typedef struct t8_profile t8_profile_t; /* Defined below */
 typedef struct t8_forest_ghost *t8_forest_ghost_t;      /* Defined below */
 
@@ -211,5 +213,7 @@ typedef struct t8_forest_ghost
   sc_mempool_t       *glo_tree_mempool;
   sc_mempool_t       *proc_offset_mempool;
 } t8_forest_ghost_struct_t;
+
+T8_EXTERN_C_END ();
 
 #endif /* ! T8_FOREST_TYPES_H! */

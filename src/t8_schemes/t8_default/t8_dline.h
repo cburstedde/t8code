@@ -29,6 +29,8 @@
 
 #include <t8.h>
 
+T8_EXTERN_C_BEGIN ();
+
 /** The number of children that a line is refined into. */
 #define T8_DLINE_CHILDREN 2
 
@@ -55,5 +57,7 @@ typedef struct t8_dline
   t8_dline_coord_t    x;
 }
 t8_dline_t;
+
+T8_EXTERN_C_END ();
 
 #endif /* T8_DLINE_H */

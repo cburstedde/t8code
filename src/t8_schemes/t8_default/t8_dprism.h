@@ -31,6 +31,8 @@
 #include "t8_dline.h"
 #include "t8_dtri.h"
 
+T8_EXTERN_C_BEGIN ();
+
 /** The number of children that a prism is refined into. */
 #define T8_DPRISM_CHILDREN 8
 
@@ -69,5 +71,7 @@ typedef struct t8_dprism
   t8_dtri_t           tri;      /*x,y coordinate + level + type */
 }
 t8_dprism_t;
+
+T8_EXTERN_C_END ();
 
 #endif /* T8_DPRISM_H */

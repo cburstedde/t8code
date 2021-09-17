@@ -34,9 +34,6 @@
 #include <t8_cmesh/t8_cmesh_trees.h>
 #include <t8_cmesh/t8_cmesh_offset.h>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 /* Compute the maximum possible refinement level in a forest. */
 void
 t8_forest_compute_maxlevel (t8_forest_t forest)
@@ -2954,5 +2951,3 @@ t8_forest_element_has_leaf_desc (t8_forest_t forest, t8_gloidx_t gtreeid,
   }
   return 0;
 }
-
-T8_EXTERN_C_END ();

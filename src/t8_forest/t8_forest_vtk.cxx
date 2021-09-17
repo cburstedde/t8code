@@ -62,9 +62,6 @@
 #include <t8_forest.h>
 #include <t8_schemes/t8_default_cxx.hxx>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 /* TODO: Currently we only use ASCII mode and no data compression.
  *       We also do not use sc_io to buffer our output stream. */
 
@@ -1547,5 +1544,3 @@ t8_forest_vtk_failure:
   t8_errorf ("Error when writing vtk file.\n");
   return 0;
 }
-
-T8_EXTERN_C_END ();

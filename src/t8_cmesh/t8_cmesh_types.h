@@ -33,6 +33,8 @@
  * We define here the datatypes needed for internal cmesh routines.
  */
 
+T8_EXTERN_C_BEGIN ();
+
 typedef struct t8_part_tree *t8_part_tree_t;
 typedef struct t8_cmesh_trees *t8_cmesh_trees_t;
 typedef struct t8_cprofile t8_cprofile_t;       /* Defined below */
@@ -281,5 +283,7 @@ t8_cprofile_struct_t;
 
 /** The number of entries in a cprofile struct */
 #define T8_CPROFILE_NUM_STATS 9
+
+T8_EXTERN_C_END ();
 
 #endif /* !T8_CMESH_TYPES_H */

@@ -22,9 +22,6 @@
 
 #include <t8_element_cxx.hxx>
 
-/* We want to export the whole implementation to be callable from "C" */
-T8_EXTERN_C_BEGIN ();
-
 #if 0
 t8_eclass_scheme_c::~t8_eclass_scheme_c ()
 {
@@ -74,8 +71,6 @@ t8_eclass_scheme::t8_element_maxlevel_linearid ()
 {
   return t8_element_maxlevel ();
 }
-
-T8_EXTERN_C_END ();
 
 #if 0
 void

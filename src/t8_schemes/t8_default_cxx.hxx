@@ -31,8 +31,6 @@
 
 #include <t8_element_cxx.hxx>
 
-T8_EXTERN_C_BEGIN ();
-
 /** Return the default element implementation of t8code. */
 t8_scheme_cxx_t    *t8_scheme_new_default_cxx (void);
 
@@ -42,7 +40,5 @@ t8_scheme_cxx_t    *t8_scheme_new_default_cxx (void);
  *                  false (zero) otherwise.
  */
 int                 t8_eclass_scheme_is_default (t8_eclass_scheme_c *ts);
-
-T8_EXTERN_C_END ();
 
 #endif /* !T8_DEFAULT_H */

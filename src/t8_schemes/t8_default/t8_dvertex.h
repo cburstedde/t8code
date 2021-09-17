@@ -29,6 +29,8 @@
 
 #include <t8.h>
 
+T8_EXTERN_C_BEGIN ();
+
 /** The number of children that a vertex is refined into. */
 #define T8_DVERTEX_CHILDREN 1
 
@@ -49,5 +51,7 @@ typedef struct t8_dvertex
   uint8_t             level;
 }
 t8_dvertex_t;
+
+T8_EXTERN_C_END ();
 
 #endif /* T8_DVERTEX_H */
