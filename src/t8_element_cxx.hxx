@@ -77,6 +77,12 @@ public:
    */
   virtual int         t8_element_maxlevel (void) = 0;
 
+  /** Return the maximum allowed level for calling linearid functions.
+   * Defaults to \ref t8_element_maxlevel if not overriden by derived class.
+   * \return                      The maximum allowed level for linear ids to work.
+   */
+  virtual int         t8_element_maxlevel_linearid (void);
+
   /** Return the type of each child in the ordering of the implementation.
    * \param [in] childid  Must be between 0 and the number of children (exclusive).
    *                      The number of children is defined in \a t8_element_num_children.

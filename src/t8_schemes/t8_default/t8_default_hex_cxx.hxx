@@ -30,6 +30,13 @@
 #include <t8_element_cxx.hxx>
 #include "t8_default_quad_cxx.hxx"
 
+/** Introduce hex maxlevel definition to facilitate future changes.
+ * p8est now allows for changing its maxlevel to P8EST_QMAXLEVEL.
+ * However, this is greater than legal for linar id functions.
+ * t8code linear id handling would need to be updated first.
+ */
+#define T8_DEFAULT_HEX_QMAXLEVEL P8EST_OLD_QMAXLEVEL
+
 /** The structure holding a hexahedral element in the default scheme.
  * We make this definition public for interoperability of element classes.
  * We might want to put this into a private, scheme-specific header file.
@@ -57,6 +64,9 @@ public:
 
 /** Return the maximum level allowed for this element class. */
   virtual int         t8_element_maxlevel (void);
+
+/** Return the maximum level allowed for linear id functions. */
+  virtual int         t8_element_maxlevel_linearid (void);
 
 /** Return the type of each child in the ordering of the implementation. */
   virtual t8_eclass_t t8_element_child_eclass (int childid);

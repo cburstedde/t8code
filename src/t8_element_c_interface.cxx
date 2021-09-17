@@ -38,6 +38,14 @@ t8_element_maxlevel (t8_eclass_scheme_c * ts)
   return ts->t8_element_maxlevel ();
 }
 
+int
+t8_element_maxlevel_linearid (t8_eclass_scheme_c * ts)
+{
+  T8_ASSERT (ts != NULL);
+
+  return ts->t8_element_maxlevel_linearid ();
+}
+
 t8_eclass_t
 t8_element_child_eclass (t8_eclass_scheme_c * ts, int childid)
 {
@@ -147,6 +155,7 @@ t8_element_set_linear_id (t8_eclass_scheme_c * ts,
                           t8_element_t * elem, int level, t8_linearidx_t id)
 {
   T8_ASSERT (ts != NULL);
+  T8_ASSERT (0 <= level && level <= ts->t8_element_maxlevel_linearid ());
 
   ts->t8_element_set_linear_id (elem, level, id);
 }
@@ -156,6 +165,7 @@ t8_element_get_linear_id (t8_eclass_scheme_c * ts,
                           const t8_element_t * elem, int level)
 {
   T8_ASSERT (ts != NULL);
+  T8_ASSERT (0 <= level && level <= ts->t8_element_maxlevel_linearid ());
 
   return ts->t8_element_get_linear_id (elem, level);
 }

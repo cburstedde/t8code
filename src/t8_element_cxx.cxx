@@ -68,6 +68,13 @@ t8_eclass_scheme::t8_element_array_index (sc_array_t * array, size_t it)
   return (t8_element_t *) sc_array_index (array, it);
 }
 
+/* Default implementation for the maximum linearid level */
+int
+t8_eclass_scheme::t8_element_maxlevel_linearid ()
+{
+  return t8_element_maxlevel ();
+}
+
 T8_EXTERN_C_END ();
 
 #if 0

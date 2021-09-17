@@ -41,6 +41,12 @@ T8_EXTERN_C_BEGIN ();
  */
 int                 t8_element_maxlevel (t8_eclass_scheme_c * ts);
 
+/** Return the maximum allowed level with working linearid functions.
+ * \param [in] ts             Implementation of a class scheme.
+ * \return                      The maximum allowed level for linear ids.
+ */
+int                 t8_element_maxlevel_linearid (t8_eclass_scheme_c * ts);
+
 /** Return the type of each child in the ordering of the implementation.
    * \param [in] ts             Implementation of a class scheme.
  * \param [in] childid  Must be between 0 and the number of children (exclusive).
@@ -197,6 +203,7 @@ void                t8_element_nca (t8_eclass_scheme_c * ts,
  * \param [in] ts             Implementation of a class scheme.
  * \param [in,out] elem The element whose entries will be set.
  * \param [in] level    The level of the uniform refinement to consider.
+ *                      Must be less equal \ref t8_element_maxlevel_linearid ().
  * \param [in] id       The linear id.
  *                      id must fulfil 0 <= id < 'number of leafs in the uniform refinement'
  */
@@ -209,6 +216,7 @@ void                t8_element_set_linear_id (t8_eclass_scheme_c * ts,
  * \param [in] ts             Implementation of a class scheme.
  * \param [in] elem     The element whose id we compute.
  * \param [in] level    The level of the uniform refinement to consider.
+ *                      Must be less equal \ref t8_element_maxlevel_linearid ().
  * \return              The linear id of the element.
  */
 t8_linearidx_t      t8_element_get_linear_id (t8_eclass_scheme_c * ts,
