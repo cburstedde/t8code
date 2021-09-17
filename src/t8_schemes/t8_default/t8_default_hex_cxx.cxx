@@ -632,14 +632,27 @@ t8_default_scheme_hex_c::t8_element_successor (const t8_element_t * elem1,
                                                t8_element_t * elem2,
                                                int level)
 {
-  t8_linearidx_t      id;
   T8_ASSERT (t8_element_is_valid (elem1));
   T8_ASSERT (t8_element_is_valid (elem2));
-  T8_ASSERT (0 <= level && level <= P8EST_OLD_QMAXLEVEL);
+  T8_ASSERT (0 <= level && level <= T8_DEFAULT_HEX_QMAXLEVEL);
 
-  id = p8est_quadrant_linear_id ((const p8est_quadrant_t *) elem1, level);
-  T8_ASSERT (id + 1 < ((t8_linearidx_t) 1) << P8EST_DIM * level);
-  p8est_quadrant_set_morton ((p8est_quadrant_t *) elem2, level, id + 1);
+  const p8est_quadrant_t *src = (const p8est_quadrant_t *) elem1;
+  if (level == src->level) {
+    p8est_quadrant_successor (src, (p8est_quadrant_t *) elem2);
+  }
+  else {
+    p8est_quadrant_t interm;
+    if (level < src->level) {
+      p8est_quadrant_ancestor (src, level, &interm);
+    }
+    else {
+      T8_ASSERT (level > src->level);
+      interm = *src;
+      interm.level = level;
+      T8_ASSERT (p8est_quadrant_is_valid (&interm));
+    }
+    p8est_quadrant_successor (&interm, (p8est_quadrant_t *) elem2);
+  }
 }
 
 void

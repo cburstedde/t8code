@@ -324,15 +324,27 @@ t8_default_scheme_quad_c::t8_element_successor (const t8_element_t * elem1,
                                                 t8_element_t * elem2,
                                                 int level)
 {
-  t8_linearidx_t      id;
-
   T8_ASSERT (t8_element_is_valid (elem1));
   T8_ASSERT (t8_element_is_valid (elem2));
   T8_ASSERT (0 <= level && level <= P4EST_QMAXLEVEL);
 
-  id = p4est_quadrant_linear_id ((const p4est_quadrant_t *) elem1, level);
-  T8_ASSERT (id + 1 < ((t8_linearidx_t) 1) << P4EST_DIM * level);
-  p4est_quadrant_set_morton ((p4est_quadrant_t *) elem2, level, id + 1);
+  const p4est_quadrant_t *src = (const p4est_quadrant_t *) elem1;
+  if (level == src->level) {
+    p4est_quadrant_successor (src, (p4est_quadrant_t *) elem2);
+  }
+  else {
+    p4est_quadrant_t interm;
+    if (level < src->level) {
+      p4est_quadrant_ancestor (src, level, &interm);
+    }
+    else {
+      T8_ASSERT (level > src->level);
+      interm = *src;
+      interm.level = level;
+      T8_ASSERT (p4est_quadrant_is_valid (&interm));
+    }
+    p4est_quadrant_successor (&interm, (p4est_quadrant_t *) elem2);
+  }
   t8_element_copy_surround ((const p4est_quadrant_t *) elem1,
                             (p4est_quadrant_t *) elem2);
 }
