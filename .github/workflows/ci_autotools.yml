@@ -161,10 +161,10 @@ jobs:
         make -j V=0
         make -j check V=0
         make -j distcheck V=0
-        mv t8code-*.tar.gz ..
+        mv t8-*.tar.gz ..
         cd ..
     - name: Save tarball
       uses: actions/upload-artifact@v2
       with:
         name: t8code_tarball
-        path: ./t8code-*.tar.gz
+        path: ./t8-*.tar.gz
