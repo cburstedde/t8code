@@ -154,8 +154,10 @@ jobs:
       run: |
         DIR="tarball" && mkdir -p "$DIR" && cd "$DIR"
         ../configure --enable-mpi --enable-debug \
-            CFLAGS="-O0 -g -pedantic -Wall -Wextra -Werror -Wno-unused-parameter \
-                    -Wno-builtin-declaration-mismatch -Wno-implicit-fallthrough"
+            CFLAGS="-O0 -g -pedantic -Wall -Wextra -Werror
+                    -Wno-unused-parameter -Wno-type-limits
+                    -Wno-builtin-declaration-mismatch
+                    -Wno-implicit-fallthrough"
         make -j V=0
         make -j check V=0
         make -j distcheck V=0
