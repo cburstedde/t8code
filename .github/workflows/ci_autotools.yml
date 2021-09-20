@@ -14,7 +14,7 @@ jobs:
       run: |
         sudo apt-get update -yq
         sudo apt-get install -yq --no-install-recommends \
-            zlib1g-dev libmpich-dev mpich
+            zlib1g-dev libmpich-dev mpich pandoc
     - name: Checkout source code
       uses: actions/checkout@v2
       with:
@@ -79,7 +79,7 @@ jobs:
       run: |
         sudo apt-get update -yq
         sudo apt-get install -yq --no-install-recommends \
-            zlib1g-dev libmpich-dev mpich
+            zlib1g-dev libmpich-dev mpich pandoc
     - name: Checkout source code
       uses: actions/checkout@v2
       with:
@@ -136,7 +136,7 @@ jobs:
       run: |
         sudo apt-get update -yq
         sudo apt-get install -yq --no-install-recommends \
-            zlib1g-dev libmpich-dev mpich
+            zlib1g-dev libmpich-dev mpich pandoc
     - name: Checkout source code
       uses: actions/checkout@v2
       with:
